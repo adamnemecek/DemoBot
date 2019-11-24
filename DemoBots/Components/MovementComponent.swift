@@ -171,7 +171,7 @@ class MovementComponent: GKComponent {
     /// Produces the destination point for the node, based on the provided translation.
     func pointForTranslatingNode(node: SKNode, withTranslationalMovement translation: MovementKind, duration: TimeInterval) -> CGPoint? {
         // No translation if the vector is a zeroVector.
-        guard translation.displacement != SIMD2<Float>() else { return nil }
+        guard translation.displacement != .zero else { return nil }
         
         var displacement = translation.displacement
         /*
@@ -217,7 +217,7 @@ class MovementComponent: GKComponent {
     
     func angleForRotatingNode(node: SKNode, withRotationalMovement rotation: MovementKind, duration: TimeInterval) -> CGFloat? {
         // No rotation if the vector is a zeroVector.
-        guard rotation.displacement != SIMD2<Float>() else { return nil }
+        guard rotation.displacement != .zero else { return nil }
 
         let angle: CGFloat
         if rotation.isRelativeToOrientation {
@@ -270,7 +270,7 @@ class MovementComponent: GKComponent {
         // Forward: (dx: 1.0, dy: 0.0), Backward: (dx: -1.0, dy: 0.0)
         if relativeDisplacement.x < 0 {
             // The entity is moving backwards, add 180 degrees to the angle
-            angleRelativeToOrientation += Float.pi
+            angleRelativeToOrientation += .pi
         }
         
         // Calculate the components of a new vector with direction based off the `angleRelativeToOrientation`.
@@ -280,7 +280,7 @@ class MovementComponent: GKComponent {
         // Make rotation correspond with relative movement, so that entities can walk and face the same direction.
         if nextRotation == nil {
             let directionFactor = Float(relativeDisplacement.x)
-            nextRotation = MovementKind(displacement: SIMD2<Float>(x: directionFactor * dx, y: directionFactor * dy))
+            nextRotation = MovementKind(displacement: directionFactor * SIMD2(x: dx, y: dy))
         }
         
         return SIMD2<Float>(x: dx, y: dy)

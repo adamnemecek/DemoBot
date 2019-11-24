@@ -120,7 +120,7 @@ class KeyboardControlInputSource: ControlInputSourceType {
             
             if downKeys.isEmpty {
                 // Ensure that the `currentDisplacement` is zero if there are no keys pressed.
-                currentDisplacement = SIMD2<Float>()
+                currentDisplacement = .zero
             }
             
             if isDirectionalDisplacementVector(relativeDisplacement) {
@@ -149,7 +149,7 @@ class KeyboardControlInputSource: ControlInputSourceType {
     
     func resetControlState() {
         // Reset the `currentDisplacement` and clear the currently tracked keys.
-        currentDisplacement = SIMD2<Float>()
+        currentDisplacement = .zero
         downKeys.removeAll()
         
         delegate?.controlInputSource(self, didUpdateWithRelativeDisplacement: currentDisplacement)
