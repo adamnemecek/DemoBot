@@ -153,7 +153,7 @@ class AnimationComponent: GKComponent {
             node.removeAction(forKey: AnimationComponent.bodyActionKey)
             
             // Reset the node's position in its parent (it may have been animating with a move action).
-            node.position = CGPoint.zero
+            node.position = .zero
 
             // Add the new body action to the node if an action exists.
             if let bodyAction = animation.bodyAction {
@@ -167,7 +167,7 @@ class AnimationComponent: GKComponent {
             shadowNode?.removeAction(forKey: AnimationComponent.shadowActionKey)
 
             // Reset the node's position in its parent (it may have been animating with a move action).
-            shadowNode?.position = CGPoint.zero
+            shadowNode?.position = .zero
 
             // Reset the node's scale (it may have been changed with a resize action).
             shadowNode?.xScale = 1.0
